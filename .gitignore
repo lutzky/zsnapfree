@@ -1,0 +1,4 @@
+/target
+
+# Create zfs.sh for testing with a remote server (env ZSNAPFREE_ZFS=./zfs.sh)
+zfs.sh

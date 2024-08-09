@@ -1,0 +1,12 @@
+[package]
+name = "zsnapfree"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+color-eyre = "0.6.3"
+eyre = "0.6.12"
+human_bytes = "0.4.3"
+indoc = "2.0.5"
+pretty_assertions = "1.4.0"
+ratatui = "0.28.0"
