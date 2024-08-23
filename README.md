@@ -3,6 +3,8 @@
 This is a TUI for showing how much space can be reclaimed by freeing zfs
 snapshots. It is a TUI wrapper over the standard `zfs` tool.
 
+[![asciicast](https://asciinema.org/a/673276.svg)](https://asciinema.org/a/673276)
+
 ## Installation
 
 ### Prebuilt binaries
