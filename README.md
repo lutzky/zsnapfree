@@ -3,6 +3,10 @@
 This is a TUI for showing how much space can be reclaimed by freeing zfs
 snapshots. It is a TUI wrapper over the standard `zfs` tool.
 
+It's useful for cases of "stored big files, deleted them, now a specific set of
+snapshots need to be removed to reclaim that space". See
+[blog post](https://github.com/lutzky/zsnapfree) for more details.
+
 [![asciicast](https://asciinema.org/a/673276.svg)](https://asciinema.org/a/673276)
 
 ## Installation
