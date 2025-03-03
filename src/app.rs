@@ -56,12 +56,10 @@ fn snap_ranges(items: &[SnapshotListItem]) -> Vec<zfs::SnapRange> {
     items
         .chunk_by(|a, b| a.marked == b.marked)
         .filter(|chunk| chunk.first().is_some_and(|f| f.marked))
-        .map(|chunk| {
-            if chunk.len() == 1 {
-                zfs::SnapRange::Single(&chunk[0].name)
-            } else {
-                zfs::SnapRange::Range(&chunk[0].name, &chunk.last().unwrap().name)
-            }
+        .map(|chunk| match chunk {
+            [snapshot] => zfs::SnapRange::Single(&snapshot.name),
+            [first, .., last] => zfs::SnapRange::Range(&first.name, &last.name),
+            [] => unreachable!(),
         })
         .collect()
 }
