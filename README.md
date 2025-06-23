@@ -5,7 +5,7 @@ snapshots. It is a TUI wrapper over the standard `zfs` tool.
 
 It's useful for cases of "stored big files, deleted them, now a specific set of
 snapshots need to be removed to reclaim that space". See
-[blog post](https://github.com/lutzky/zsnapfree) for more details.
+[blog post](https://lutzky.net/posts/zsnapfree/) for more details.
 
 [![asciicast](https://asciinema.org/a/673276.svg)](https://asciinema.org/a/673276)
 
@@ -19,6 +19,14 @@ See [releases](https://github.com/lutzky/zsnapfree/releases).
 
 ```shell
 cargo install --git https://github.com/lutzky/zsnapfree
+```
+
+## Running
+
+If your ZFS dataset is named `mypool`:
+
+```shell
+zsnapfree mypool
 ```
 
 ## Contributing
