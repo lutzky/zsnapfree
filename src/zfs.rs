@@ -53,10 +53,15 @@ pub fn get_snapshots(dataset: &str) -> Result<Vec<String>> {
         .wrap_err_with(|| format!("Failed to run zfs {:?}", args))?;
 
     if !output.status.success() {
-        return Err(eyre!(
-            "Failed to fetch snapshots for {dataset}: {}",
-            String::from_utf8_lossy(&output.stderr).trim()
-        ));
+        let reason = String::from_utf8_lossy(&output.stderr);
+        let reason = reason.trim();
+
+        let mut res = eyre!("Failed to fetch snapshots for {dataset}: {reason}");
+        if reason.contains("dataset does not exist") {
+            res = res.with_note(|| "For valid datasets, run zfs list");
+        }
+
+        return Err(res);
     }
 
     snapshots_from_output(dataset, &output.stdout)

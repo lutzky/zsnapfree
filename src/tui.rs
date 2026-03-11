@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/// Utility functions for terminal management
+//! Utility functions for terminal management
 
 use std::io::{stdout, Stdout};
 
