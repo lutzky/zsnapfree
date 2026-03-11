@@ -35,8 +35,8 @@ fn main() -> Result<()> {
 
     let args = Args::parse();
 
+    let mut app = app::App::new(&args.target)?;
     let mut terminal = tui::init()?;
-    let mut app = app::App::new(&args.target);
     let app_result = app.run(&mut terminal);
 
     tui::restore()?;

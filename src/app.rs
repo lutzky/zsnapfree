@@ -65,13 +65,12 @@ fn snap_ranges(items: &[SnapshotListItem]) -> Vec<zfs::SnapRange> {
 }
 
 impl App {
-    pub fn new(dataset: &str) -> Self {
-        Self {
+    pub fn new(dataset: &str) -> Result<Self> {
+        Ok(Self {
             dataset: dataset.to_owned(),
             snapshot_list_state: ListState::default(),
             result: ReclaimResult::default(),
-            items: zfs::get_snapshots(dataset)
-                .unwrap()
+            items: zfs::get_snapshots(dataset)?
                 .iter()
                 .map(|snapshot| SnapshotListItem {
                     name: snapshot.to_owned(),
@@ -81,7 +80,7 @@ impl App {
             dirty: false,
 
             exit: false,
-        }
+        })
     }
 
     pub fn equivalent_command_line(&self) -> String {
