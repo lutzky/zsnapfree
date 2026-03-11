@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/// zsnapfree is a TUI for showing how much space can be reclaimed by freeing
-/// zfs snapshots. It is a TUI wrapper over the standard `zfs` tool.
+//! zsnapfree is a TUI for showing how much space can be reclaimed by freeing zfs snapshots. It is
+//! a TUI wrapper over the standard `zfs` tool.
 
 use std::time::Duration;
 
