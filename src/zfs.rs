@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/// Library functions for handling ZFS
+//! Library functions for handling ZFS
 
 use color_eyre::{Result, Section};
 use eyre::{eyre, Context};
