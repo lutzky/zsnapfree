@@ -67,7 +67,7 @@ pub fn get_snapshots(dataset: &str) -> Result<Vec<String>> {
     snapshots_from_output(dataset, &output.stdout)
 }
 
-fn snapshots_from_output(dataset: &str, stdout: &Vec<u8>) -> Result<Vec<String>> {
+fn snapshots_from_output(dataset: &str, stdout: &[u8]) -> Result<Vec<String>> {
     let prefix = format!("{dataset}@");
 
     stdout
@@ -158,10 +158,10 @@ tank/my_filesystem@zfs-auto-snap_monthly-2023-10-01-0552	8.85M	-	293M	-
 tank/my_filesystem@zfs-auto-snap_monthly-2023-11-01-0652	2.58M	-	309M	-
 tank/my_filesystem@zfs-auto-snap_monthly-2023-12-01-0652	2.55M	-	309M	-
 "}
-        .into();
+        .as_bytes();
 
         assert_eq!(
-            super::snapshots_from_output("tank/my_filesystem", &stdout).unwrap(),
+            super::snapshots_from_output("tank/my_filesystem", stdout).unwrap(),
             vec![
                 "zfs-auto-snap_monthly-2023-09-01-0552",
                 "zfs-auto-snap_monthly-2023-10-01-0552",
@@ -170,7 +170,7 @@ tank/my_filesystem@zfs-auto-snap_monthly-2023-12-01-0652	2.55M	-	309M	-
             ],
         );
 
-        let want_error = super::snapshots_from_output("tank/some_other_filesystem", &stdout);
+        let want_error = super::snapshots_from_output("tank/some_other_filesystem", stdout);
 
         if want_error.is_ok() {
             panic!("Wanted 'wrong filesystem', got {:?}", want_error)

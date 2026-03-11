@@ -52,7 +52,7 @@ struct SnapshotListItem {
     marked: bool,
 }
 
-fn snap_ranges(items: &[SnapshotListItem]) -> Vec<zfs::SnapRange> {
+fn snap_ranges(items: &[SnapshotListItem]) -> Vec<zfs::SnapRange<'_>> {
     items
         .chunk_by(|a, b| a.marked == b.marked)
         .filter(|chunk| chunk.first().is_some_and(|f| f.marked))
@@ -239,7 +239,7 @@ mod tests {
     #[test]
     fn consecutive_snap_ranges() {
         use zfs::SnapRange::*;
-        let items: Vec<SnapshotListItem> = vec![
+        let items: Vec<SnapshotListItem> = [
             ("a", false),
             ("b", true),
             ("c", true),
