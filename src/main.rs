@@ -14,22 +14,29 @@
 
 // Main entrypoint for zsnapfree
 
+use clap::Parser;
 use color_eyre::Result;
 use human_bytes::human_bytes;
 use indoc::printdoc;
-use std::env::args;
 
 mod app;
 mod tui;
 mod zfs;
 
+/// TUI for showing how much space can be reclaimed by freeing zfs snapshots
+#[derive(Parser)]
+#[command(version, about)]
+struct Args {
+    target: String,
+}
+
 fn main() -> Result<()> {
     color_eyre::install()?;
 
-    let target = args().nth(1).unwrap();
+    let args = Args::parse();
 
     let mut terminal = tui::init()?;
-    let mut app = app::App::new(&target);
+    let mut app = app::App::new(&args.target);
     let app_result = app.run(&mut terminal);
 
     tui::restore()?;
