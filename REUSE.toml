@@ -1,0 +1,10 @@
+version = 1
+
+[[annotations]]
+# Files that cannot have a builtin SPDX comment
+path = [
+  "Cargo.lock",
+]
+
+SPDX-License-Identifier = "Apache-2.0"
+SPDX-FileCopyrightText = "Copyright (C) 2024 Ohad Lutzky <lutzky@gmail.com>"
