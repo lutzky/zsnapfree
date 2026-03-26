@@ -1,0 +1,16 @@
+# Copyright (C) 2026 Ohad Lutzky <lutzky@gmail.com>
+#
+# SPDX-License-Identifier: Apache-2.0
+
+# cSpell: words fsfe
+
+name: License Compliance
+on: [push, pull_request]
+
+jobs:
+  check-license:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: REUSE Compliance Check
+        uses: fsfe/reuse-action@v6
