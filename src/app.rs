@@ -14,7 +14,6 @@ use crate::zfs::ReclaimResult;
 use color_eyre::Result;
 use human_bytes::human_bytes;
 use ratatui::crossterm::event::poll;
-use ratatui::widgets::block::Title;
 use ratatui::{
     buffer::Buffer,
     crossterm::event::{self, Event, KeyCode, KeyEvent, KeyEventKind},
@@ -166,7 +165,7 @@ impl App {
 
 impl Widget for &mut App {
     fn render(self, area: Rect, buf: &mut Buffer) {
-        let title = Title::from(format!(" Snapshots for {} ", self.dataset).bold());
+        let title = Line::from(format!(" Snapshots for {} ", self.dataset).bold());
 
         let title_bottom_parts = [
             vec![
